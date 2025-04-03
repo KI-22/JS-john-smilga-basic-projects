@@ -42,6 +42,7 @@ const randomBtn = document.querySelector('.random-btn');
 // set starting item
 let currentItem = 0;
 
+
 // load initial item
 window.addEventListener('DOMContentLoaded', function() {
   showPerson(currentItem);
@@ -71,5 +72,15 @@ prevBtn.addEventListener('click', function(){
   if(currentItem < 0){
     currentItem = reviews.length - 1;
   }
+  showPerson(currentItem);
+});
+
+// show random person (doesn't 'repeat' same person either)
+randomBtn.addEventListener('click', function() {
+  randomItem = currentItem;
+  while(randomItem === currentItem){
+    randomItem = Math.floor(Math.random() * reviews.length);
+  }
+  currentItem = randomItem;
   showPerson(currentItem);
 });
