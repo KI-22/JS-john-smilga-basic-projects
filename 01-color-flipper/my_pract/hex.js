@@ -5,14 +5,14 @@ const color = document.querySelector(".color");
 
 btn.addEventListener("click", function() {
     // // generate random hex
-    const randomHex = ["#"];
-    for(let i = 0; i <= 5; i++){
-        randomHex.push(hex[getRandomNumber()]);
+    let randomHex = "#";
+    for(let i = 0; i < 6; i++){
+        randomHex += hex[getRandomNumber()];
     };
     
-    console.log(randomHex);
-    document.body.style.backgroundColor = randomHex.join("");
-    color.textContent = randomHex.join("");
+    // console.log(randomHex);
+    document.body.style.backgroundColor = randomHex;
+    color.textContent = randomHex;
 });
 
 function getRandomNumber() {
