@@ -1,4 +1,6 @@
-# JavaScript Practice w/FreeCodeCamp << TO EDIT README
+# JavaScript Practice w/FreeCodeCamp 
+
+** still editing README - to change **
 
 Currently working through a variety of the JavaScript projects provided.
 
