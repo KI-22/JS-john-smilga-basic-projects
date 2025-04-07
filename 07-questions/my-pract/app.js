@@ -8,20 +8,15 @@
 
 // btns.forEach(function(btn){
 //     btn.addEventListener("click", function(el) {
-//         console.log(el.currentTarget.parentElement.parentElement);
+//         // console.log(el.currentTarget.parentElement.parentElement);
 //         const question = el.currentTarget.parentElement.parentElement;
-
 //         question.classList.toggle("show-text");  // toggle seems to add/remove as relevant
-
-//         if (question.classList.contains("show-text")){
-//             console.log("now show-text: YES");
-//         }
-//         else {
-//             console.log("now show-text: NO");
-//         }
 //     });
 // });
 
+
+// // NOTE: above works but shows all FAQs, not one at a time. 
+// //       Not option given, tried briefly myself and not sure how would go about it.
 
 
 
@@ -37,10 +32,18 @@ questions.forEach(function(question) {
     // console.log(btn);
     btn.addEventListener("click", function() {
 
-        questions.forEach(function(item){      // 'item' is the same as 'question' above, we've just called it something different
-            if (item.classList.contains("show-text") && item != question){
-                item.classList.toggle("show-text");
-            }
+        // // my attempt // //
+        // questions.forEach(function(item){      // 'item' is the same as 'question' above, we've just called it something different
+        //     if (item.classList.contains("show-text") && item != question){
+        //         item.classList.toggle("show-text");
+        //     }
+        // });
+
+        // // reformatted (tutorials version) // //
+        questions.forEach(function(item){
+            if (item != question){
+                item.classList.remove("show-text");
+            };
         });
 
         question.classList.toggle("show-text");
