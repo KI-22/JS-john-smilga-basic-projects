@@ -1,8 +1,9 @@
+// // // // // // // // // // // // //
+// // opt 1 - traversing the dom // //
+// // // // // // // // // // // // //
 
-// // opt 1 - traversing the dom // ///
 
-
-// select buttons
+// // select buttons
 // const btns = document.querySelectorAll('.question-btn');    // using All b.c. we have mutiple buttons
 
 // btns.forEach(function(btn){
@@ -24,12 +25,24 @@
 
 
 
+// // // // // // // // // // // // // // // // // // //
+// // opt 2 - using selectors inside the element  // //
+// // // // // // // // // // // // // // // // // // //
 
-// // opt 2 - using selectors inside the element // //
 const questions = document.querySelectorAll('.question');
 
 questions.forEach(function(question) {
     // console.log(question);
     const btn = question.querySelector('.question-btn');    // not using document as we don't want to seelct all the buttons (~?)
-    console.log(btn);
+    // console.log(btn);
+    btn.addEventListener("click", function() {
+
+        questions.forEach(function(item){      // 'item' is the same as 'question' above, we've just called it something different
+            if (item.classList.contains("show-text") && item != question){
+                item.classList.toggle("show-text");
+            }
+        });
+
+        question.classList.toggle("show-text");
+    });
 });
