@@ -53,6 +53,11 @@ function addItem(e){
                   <i class="fas fa-trash"></i>
                 </button>
               </div>`;
+        const deleteBtn = element.querySelector(".delete-btn");
+        const editBtn = element.querySelector(".edit-btn");
+        deleteBtn.addEventListener("click", deleteItem);
+        editBtn.addEventListener("click", editItem);
+
         // append child
         list.appendChild(element);
         // display alert
@@ -65,12 +70,15 @@ function addItem(e){
         setBackToDefault();
     }
     else if (value && editFlag){
-        console.log("editing");
+        // console.log("editing");
+        editElement.innerHTML = value;
+        displayAlert("value changed", "success");
+        // edit local storage
+        // editLocalStorage(editID, value);
+        setBackToDefault();
     }
     else{
         // console.log("empty value");
-        // alert.textContent = "empty value";      // not a pop up, but banner-style
-        // alert.classList.add("alert-danger");
         displayAlert("please enter value", "danger");
     };
 };
@@ -85,6 +93,36 @@ function displayAlert(text, action){
         alert.textContent = "";
         alert.classList.remove(`alert-${action}`);
     }, 2000); // milliseconds
+};
+
+
+// edit function
+function editItem(e) {
+    // console.log("edit item");
+    const element = e.currentTarget.parentElement.parentElement;
+    // set edit item
+    editElement = e.currentTarget.parentElement.previousElementSibling; // parentElement here is 'btn-container'
+    // set form value
+    grocery.value = editElement.innerHTML;   // will give us the element name/value (e.g. eggs, milk) in our input
+    editFlag = true;
+    editID = element.dataset.id;
+    submitBtn.textContent = "edit"; // changes button text from 'submit' to 'edit'
+};
+
+
+// delete function
+function deleteItem(e) {
+    // console.log("item deleted");
+    const element = e.currentTarget.parentElement.parentElement;
+    const id = element.dataset.id; // ??? for removeFromLocalStorage
+    list.removeChild(element);
+    if (list.children.length === 0) {   // hides container if no items left after deletion
+        container.classList.remove("show-container");
+    }
+    displayAlert("item removed", "danger");
+    setBackToDefault();
+    // remove from local storage
+    // removeFromLocalStorage(id);
 };
 
 // set back to default (most are extras for now, will need later!)
@@ -116,6 +154,14 @@ function clearItems(){
 // ****** LOCAL STORAGE **********
 function addToLocalStorage(id, value){
     console.log("add to local storage:" + value);
+};
+
+function removeFromLocalStorage(id){
+    //
+};
+
+function editLocalStorage(id, value){
+    //
 };
 
 // ****** SETUP ITEMS **********
